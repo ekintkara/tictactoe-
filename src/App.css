@@ -2,8 +2,46 @@
   text-align: center;
 }
 
+.tutorial-container {
+  margin: auto;
+  background-color: #9cb99d;
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
+.tutorial-button {
+  margin: 300px;
+  background-color: #4caf50;
+  color: white;
+  padding: 20px 30px;
+  text-align: center;
+  display: inline-block;
+  font-size: 26px;
+  border-radius: 20%;
+  font-family: fantasy;
+  position: absolute;
+  right: 330px;
+  cursor: pointer;
+}
+.tutorial-title {
+  text-align: center;
+  color: rgb(39, 17, 17);
+  text-transform: uppercase;
+  padding: 1px;
+  font-family: "Raleway", cursive;
+  font-weight: 100;
+  position: relative;
+  background: -webkit-linear-gradient(left, black, #eee, black);
+  background: -moz-linear-gradient(left, black, #eee, black);
+  background: -ms-linear-gradient(left, black, #eee, black);
+  background: -o-linear-gradient(left, black, #eee, black);
+}
 
+.tutorial-text{
+  margin: 50px;
+  text-align: center;
+  color:aliceblue
 
-
-
-
+}
