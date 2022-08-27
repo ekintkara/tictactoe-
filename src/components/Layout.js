@@ -1,6 +1,6 @@
 function Layout(props) {
     return (
-      <div className="layout" {...props} />
+      <div className="layout-p" {...props} />
     );
   }
   
