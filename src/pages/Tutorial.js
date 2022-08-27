@@ -14,7 +14,7 @@ export default class Tutorial extends Component {
           row is the winner. It is a solved game, with a forced draw assuming
           best play from both players.
         </h2>
-        <Link className="tutorial-button" to={"/game"}>
+        <Link className="tutorial-button" to="/Game">
           START
         </Link>
       </div>
