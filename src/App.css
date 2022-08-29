@@ -1,8 +1,12 @@
+
 .App {
   text-align: center;
 }
 
 .tutorial-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   margin: auto;
   background-color: #9cb99d;
   position: fixed;
@@ -10,20 +14,23 @@
   left: 0;
   min-width: 100%;
   min-height: 100%;
+  align-items: center;
+  align-content: center;
 }
+
 .tutorial-button {
-  margin: 300px;
+  margin: 0 auto;
   background-color: #4caf50;
   color: white;
   padding: 20px 30px;
   text-align: center;
-  display: inline-block;
+  
   font-size: 26px;
   border-radius: 20%;
   font-family: fantasy;
-  position: absolute;
-  right: 330px;
+
   cursor: pointer;
+  text-decoration: none;
 }
 .tutorial-title {
   text-align: center;
@@ -47,25 +54,10 @@
 .box-type {
   width: 100px;
   height: 100px;
-  border: 2px solid #fff;
+  border: 2px solid rgb(15, 15, 15);
   box-sizing: border-box;
   font-size: 4rem;
   text-align: center;
-}
-
-.box-type1 {
-  background: rgb(87, 75, 75);
-  border: 1px solid #999;
-  float: left;
-  font-size: 24px;
-  font-weight: bold;
-  line-height: 34px;
-  height: 34px;
-  margin-right: -1px;
-  margin-top: -1px;
-  padding: 0;
-  text-align: center;
-  width: 34px;
 }
 
 .status {
@@ -73,7 +65,7 @@
 }
 
 body {
-  background-color: #9cb99d;
+  
   color: #fff;
 }
 main {
@@ -81,6 +73,7 @@ main {
   margin: 50px auto 0;
 }
 .layout-p {
+  background-color: #9cb99d;
   margin-top: 50%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -96,4 +89,13 @@ div.result.green {
 }
 div.result.red {
   background-color: rgb(0, 0, 0);
+}
+ 
+
+.end{
+  text-align: center;
+}
+
+.modal-body{
+  text-align: center;
 }
