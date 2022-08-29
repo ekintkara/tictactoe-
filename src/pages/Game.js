@@ -3,7 +3,7 @@ import Layout from "../components/Layout";
 import Box from "../components/Box";
 import { useState, useEffect } from "react";
 
-import { Button, Alert, Modal, ModalBody, ModalFooter } from "reactstrap";
+import { Button,  Modal, ModalBody } from "reactstrap";
 
 const defaultBoxes = () => new Array(9).fill(null);
 
@@ -48,11 +48,11 @@ function Game() {
       toggle();
     }
     if (clickNumber === 5) {
-      if (computerWon) {
-        setWinner("o");
+      if (computerWon || playerWon) {
       } else {
         setWinner("y");
         setClickNumber(clickNumber + 1);
+        toggle();
       }
     }
 
@@ -123,31 +123,14 @@ function Game() {
         ))}
       </Layout>
 
-     {winner === "y" && (
-        <div  color="primary">
-          Drow 
-        </div>
-      )}
-          {winner === "o" && (
-        <Alert  color="danger">
-          Computer Wins
-        </Alert>
-      )}
-      {winner === "x" && (
-        <div  color="primary">
-        win
-        </div>
-      )}
-      
-      <Modal isOpen={modal} toggle={toggle} >
-        <ModalBody className="modal-body"> <Button className="reset-button" color="danger" onClick={resetGame}>
+      {winner === "x" && <div>win</div>}
+      {winner === "y" && <div>Drow</div>}
+      {winner === "o" && <div>Computer Wins</div>}
+      <Modal isOpen={modal} toggle={toggle}>
+        <ModalBody className="modal-body"><Button className="reset-button" color="danger" onClick={resetGame}>
             RESET
-          </Button>
-      </ModalBody>
-
-        <ModalFooter>
+          </Button></ModalBody>
        
-        </ModalFooter>
       </Modal>
     </main>
   );

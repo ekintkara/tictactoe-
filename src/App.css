@@ -5,6 +5,7 @@
 
 .tutorial-container {
   display: flex;
+  padding: 30px;
   flex-direction: column;
   justify-content: flex-start;
   margin: auto;
@@ -80,22 +81,12 @@ main {
   grid-template-rows: 1fr 1fr 1fr;
 }
 
-div.result {
-  font-size: 2rem;
-  padding: 5px;
-}
-div.result.green {
-  background-color: rgb(64, 219, 64);
-}
-div.result.red {
-  background-color: rgb(0, 0, 0);
-}
- 
-
 .end{
   text-align: center;
 }
 
 .modal-body{
-  text-align: center;
-}
+ display: flex;
+ justify-content: center;
+ align-items: center;
+} 
