@@ -2,8 +2,8 @@ import "../App.css";
 import Layout from "../components/Layout";
 import Box from "../components/Box";
 import { useState, useEffect } from "react";
-import alertify from "alertifyjs";
-import { Button } from "reactstrap";
+
+import { Button, Alert, Modal, ModalBody, ModalFooter } from "reactstrap";
 
 const defaultBoxes = () => new Array(9).fill(null);
 
@@ -19,9 +19,11 @@ const lines = [
 ];
 
 function Game() {
+  const [clickNumber, setClickNumber] = useState(0);
+  const [modal, setModal] = useState(false);
   const [boxes, setBoxes] = useState(defaultBoxes());
   const [winner, setWinner] = useState(null);
-
+  const toggle = () => setModal(!modal);
   useEffect(() => {
     const isComputerTurn = boxes.filter((box) => box !== null).length % 2 === 1;
     const linesThatAre = (a, b, c) => {
@@ -32,24 +34,28 @@ function Game() {
         );
       });
     };
-    
+
     const emptyIndexes = boxes
-      .map((square, index) => (square === null ? index : null))
+      .map((box, index) => (box === null ? index : null))
       .filter((val) => val !== null);
     const playerWon = linesThatAre("x", "x", "x").length > 0;
     const computerWon = linesThatAre("o", "o", "o").length > 0;
-    const drow = linesThatAre("x","x","x","x","x").length>0;
     if (playerWon) {
+      toggle();
       setWinner("x");
-    }
-    if (computerWon) {
+    } else if (computerWon) {
       setWinner("o");
+      toggle();
     }
-    else if (drow){
-      setWinner("y")
-      
+    if (clickNumber === 5) {
+      if (computerWon) {
+        setWinner("o");
+      } else {
+        setWinner("y");
+        setClickNumber(clickNumber + 1);
+      }
     }
-    
+
     const putComputerAt = (index) => {
       let newBoxes = boxes;
       newBoxes[index] = "o";
@@ -89,6 +95,7 @@ function Game() {
   }, [boxes]);
 
   function handleBoxClick(index) {
+    setClickNumber(clickNumber + 1);
     const isPlayerTurn = boxes.filter((box) => box !== null).length % 2 === 0;
     if (isPlayerTurn) {
       let newBoxes = boxes;
@@ -96,6 +103,12 @@ function Game() {
       setBoxes([...newBoxes]);
     }
   }
+  const resetGame = () => {
+    setClickNumber(0);
+    setBoxes(defaultBoxes());
+    setWinner(null);
+    toggle();
+  };
 
   return (
     <main>
@@ -104,14 +117,38 @@ function Game() {
           <Box
             x={box === "x" ? 1 : 0}
             o={box === "o" ? 1 : 0}
-            y={box === "y" ? 1 : 0}
+            disabled={box === "x" || box === "o"}
             onClick={() => handleBoxClick(index)}
           />
         ))}
       </Layout>
-      {!!winner && winner === "x" && <div>win</div>}
-      {!!winner && winner === "o" && alertify.alert("you Lost")}
-      {!!winner && winner == "y" && <div>beraber</div>} 
+
+     {winner === "y" && (
+        <div  color="primary">
+          Drow 
+        </div>
+      )}
+          {winner === "o" && (
+        <Alert  color="danger">
+          Computer Wins
+        </Alert>
+      )}
+      {winner === "x" && (
+        <div  color="primary">
+        win
+        </div>
+      )}
+      
+      <Modal isOpen={modal} toggle={toggle} >
+        <ModalBody className="modal-body"> <Button className="reset-button" color="danger" onClick={resetGame}>
+            RESET
+          </Button>
+      </ModalBody>
+
+        <ModalFooter>
+       
+        </ModalFooter>
+      </Modal>
     </main>
   );
 }
