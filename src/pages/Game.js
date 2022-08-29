@@ -2,6 +2,8 @@ import "../App.css";
 import Layout from "../components/Layout";
 import Box from "../components/Box";
 import { useState, useEffect } from "react";
+import alertify from "alertifyjs";
+import { Button } from "reactstrap";
 
 const defaultBoxes = () => new Array(9).fill(null);
 
@@ -30,17 +32,24 @@ function Game() {
         );
       });
     };
+    
     const emptyIndexes = boxes
       .map((square, index) => (square === null ? index : null))
       .filter((val) => val !== null);
     const playerWon = linesThatAre("x", "x", "x").length > 0;
     const computerWon = linesThatAre("o", "o", "o").length > 0;
+    const drow = linesThatAre("x","x","x","x","x").length>0;
     if (playerWon) {
       setWinner("x");
     }
     if (computerWon) {
       setWinner("o");
     }
+    else if (drow){
+      setWinner("y")
+      
+    }
+    
     const putComputerAt = (index) => {
       let newBoxes = boxes;
       newBoxes[index] = "o";
@@ -80,8 +89,7 @@ function Game() {
   }, [boxes]);
 
   function handleBoxClick(index) {
-    const isPlayerTurn =
-      boxes.filter((box) => box !== null).length % 2 === 0;
+    const isPlayerTurn = boxes.filter((box) => box !== null).length % 2 === 0;
     if (isPlayerTurn) {
       let newBoxes = boxes;
       newBoxes[index] = "x";
@@ -96,16 +104,14 @@ function Game() {
           <Box
             x={box === "x" ? 1 : 0}
             o={box === "o" ? 1 : 0}
+            y={box === "y" ? 1 : 0}
             onClick={() => handleBoxClick(index)}
           />
         ))}
       </Layout>
-      {!!winner && winner === "x" && (
-        <div className="result green">You WON!</div>
-      )}
-      {!!winner && winner === "o" && (
-        <div className="result red">You LOST!</div>
-      )}
+      {!!winner && winner === "x" && <div>win</div>}
+      {!!winner && winner === "o" && alertify.alert("you Lost")}
+      {!!winner && winner == "y" && <div>beraber</div>} 
     </main>
   );
 }

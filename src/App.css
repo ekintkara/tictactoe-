@@ -39,9 +39,61 @@
   background: -o-linear-gradient(left, black, #eee, black);
 }
 
-.tutorial-text{
+.tutorial-text {
   margin: 50px;
   text-align: center;
-  color:aliceblue
+  color: aliceblue;
+}
+.box-type {
+  width: 100px;
+  height: 100px;
+  border: 2px solid #fff;
+  box-sizing: border-box;
+  font-size: 4rem;
+  text-align: center;
+}
 
+.box-type1 {
+  background: rgb(87, 75, 75);
+  border: 1px solid #999;
+  float: left;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 34px;
+  height: 34px;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  text-align: center;
+  width: 34px;
+}
+
+.status {
+  margin-bottom: 10px;
+}
+
+body {
+  background-color: #9cb99d;
+  color: #fff;
+}
+main {
+  width: 300px;
+  margin: 50px auto 0;
+}
+.layout-p {
+  margin-top: 50%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+}
+
+div.result {
+  font-size: 2rem;
+  padding: 5px;
+}
+div.result.green {
+  background-color: rgb(64, 219, 64);
+}
+div.result.red {
+  background-color: rgb(0, 0, 0);
 }
